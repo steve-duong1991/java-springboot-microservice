@@ -1,0 +1,65 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.4.1'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'checkstyle'
+    id 'com.diffplug.spotless' version '6.25.0'
+    id 'jacoco'
+    id 'pmd'
+}
+
+group = 'steveduong'
+version = '1.0'
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+checkstyle {
+    ignoreFailures = false
+}
+
+spotless {
+    java {
+        googleJavaFormat() // Use Google Java Format
+        removeUnusedImports() // Remove unused imports
+        trimTrailingWhitespace() // Trim trailing whitespace
+        endWithNewline() // Ensure files end with a newline
+    }
+}
+
+dependencyLocking {
+    lockAllConfigurations()
+}
+
+task resolveAndLockDependencies {
+    doLast {
+        // Set the flag to enable writing dependency locks
+        gradle.startParameter.setWriteDependencyLocks(true)
+
+        // Iterate and resolve configurations to trigger lock file generation
+        configurations.findAll {
+            // Optional: Add filtering here if you only want to lock specific configurations
+            it.canBeResolved
+        }.each {
+            println "Resolving configuration: ${it.name}"
+            it.resolve()
+        }
+    }
+}
