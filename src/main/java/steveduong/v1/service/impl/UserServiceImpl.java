@@ -1,13 +1,13 @@
-package steveduong.service.impl;
+package steveduong.v1.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
-import steveduong.dto.User;
-import steveduong.exception.UserNotFoundException;
-import steveduong.service.UserService;
+import steveduong.v1.dto.User;
+import steveduong.v1.exception.UserNotFoundException;
+import steveduong.v1.service.UserService;
 
 @Service
 @Slf4j

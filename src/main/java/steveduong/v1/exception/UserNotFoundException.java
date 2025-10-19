@@ -1,4 +1,4 @@
-package steveduong.exception;
+package steveduong.v1.exception;
 
 import java.io.Serial;
 import java.io.Serializable;

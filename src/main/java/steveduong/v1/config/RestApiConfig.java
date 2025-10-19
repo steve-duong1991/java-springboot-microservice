@@ -1,4 +1,4 @@
-package steveduong.config;
+package steveduong.v1.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;

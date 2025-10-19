@@ -1,8 +1,8 @@
-package steveduong.service.impl;
+package steveduong.v1.service.impl;
 
 import org.springframework.stereotype.Service;
-import steveduong.dto.User;
-import steveduong.service.CustomerService;
+import steveduong.v1.dto.User;
+import steveduong.v1.service.CustomerService;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {

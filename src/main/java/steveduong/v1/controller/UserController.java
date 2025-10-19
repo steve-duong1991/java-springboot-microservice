@@ -1,4 +1,4 @@
-package steveduong.controller;
+package steveduong.v1.controller;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import steveduong.dto.User;
-import steveduong.service.CustomerService;
-import steveduong.service.UserService;
+import steveduong.v1.dto.User;
+import steveduong.v1.service.CustomerService;
+import steveduong.v1.service.UserService;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/v1/api/users")
 @Slf4j
 @RequiredArgsConstructor
 public class UserController {

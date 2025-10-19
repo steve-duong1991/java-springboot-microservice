@@ -1,13 +1,13 @@
-package steveduong.exception.handler;
+package steveduong.v1.exception.handler;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import steveduong.dto.error.UnknownError;
-import steveduong.dto.error.UserNotFoundError;
-import steveduong.exception.UserNotFoundException;
+import steveduong.v1.dto.error.UnknownError;
+import steveduong.v1.dto.error.UserNotFoundError;
+import steveduong.v1.exception.UserNotFoundException;
 
 @RestControllerAdvice
 @Slf4j

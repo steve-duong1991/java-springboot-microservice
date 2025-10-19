@@ -1,4 +1,4 @@
-package steveduong.dto.error;
+package steveduong.v1.dto.error;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -7,9 +7,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class UserNotFoundError {
-
+public class UnknownError {
   private String error;
 
   private int status;
+
+  private String rootCause;
 }
