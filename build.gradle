@@ -48,7 +48,7 @@ dependencyLocking {
     lockAllConfigurations()
 }
 
-task resolveAndLockDependencies {
+tasks.register('resolveAndLockDependencies') {
     doLast {
         // Set the flag to enable writing dependency locks
         gradle.startParameter.setWriteDependencyLocks(true)
