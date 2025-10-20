@@ -22,6 +22,9 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'org.postgresql:postgresql'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -48,18 +51,6 @@ dependencyLocking {
     lockAllConfigurations()
 }
 
-tasks.register('resolveAndLockDependencies') {
-    doLast {
-        // Set the flag to enable writing dependency locks
-        gradle.startParameter.setWriteDependencyLocks(true)
-
-        // Iterate and resolve configurations to trigger lock file generation
-        configurations.findAll {
-            // Optional: Add filtering here if you only want to lock specific configurations
-            it.canBeResolved
-        }.each {
-            println "Resolving configuration: ${it.name}"
-            it.resolve()
-        }
-    }
+tasks.register('updateLocks', Exec) {
+    commandLine './gradlew', 'dependencies', '--write-locks'
 }
