@@ -15,11 +15,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity(name = "user")
 @Table(name = "user", schema = "public")
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(
+    callSuper = false,
+    exclude = {})
+@ToString(exclude = {})
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
