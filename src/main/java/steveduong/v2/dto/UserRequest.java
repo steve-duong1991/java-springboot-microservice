@@ -1,13 +1,24 @@
 package steveduong.v2.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import java.time.LocalDate;
 import lombok.Data;
 
 @Data
 public class UserRequest {
-  //  @NotBlank(message = "Name is required")
-  //  private String name;
 
-  //  @NotBlank(message = "Email is required")
-  //  @Email(message = "Email should be valid")
   private String email;
+
+  private String firstName;
+
+  private String middleName;
+
+  private String lastName;
+
+  @JsonFormat(pattern = "dd-MM-yyyy")
+  private LocalDate dateOfBirth;
+
+  private Gender gender;
+
+  private UserStatus status;
 }

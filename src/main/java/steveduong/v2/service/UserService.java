@@ -2,6 +2,7 @@ package steveduong.v2.service;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import steveduong.v2.dto.UserRequest;
 import steveduong.v2.dto.UserResponse;
@@ -9,6 +10,7 @@ import steveduong.v2.mapper.UserMapper;
 import steveduong.v2.model.User;
 import steveduong.v2.repository.UserRepository;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -32,8 +34,8 @@ public class UserService {
       throw new RuntimeException("Email already exists: " + request.getEmail());
     }
 
-    User user = User.builder().email(request.getEmail()).build();
-
+    User user = userMapper.toEntity(request);
+    log.info("createUser: {}", user);
     User savedUser = userRepository.save(user);
     return userMapper.toResponse(savedUser);
   }
