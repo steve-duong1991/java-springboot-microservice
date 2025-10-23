@@ -2,6 +2,7 @@ package steveduong.v2.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.Named;
 import steveduong.v2.dto.UserRequest;
 import steveduong.v2.dto.UserResponse;
@@ -70,4 +71,10 @@ public interface UserMapper {
       case BLOCK -> UserStatus.DEACTIVATE;
     };
   }
+
+  @Mapping(target = "id", ignore = true)
+  @Mapping(target = "internalId", ignore = true)
+  @Mapping(target = "gender", expression = "java(mapGenderModel(request.getGender()))")
+  @Mapping(target = "status", expression = "java(mapStatusModel(request.getStatus()))")
+  User updateUserFromRequest(UserRequest request, @MappingTarget User user);
 }

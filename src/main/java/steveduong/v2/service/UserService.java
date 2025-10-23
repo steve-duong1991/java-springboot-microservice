@@ -1,5 +1,6 @@
 package steveduong.v2.service;
 
+import java.time.Instant;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -46,11 +47,17 @@ public class UserService {
             .findById(id)
             .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
 
-    //    user.setName(request.getName());
-    user.setEmail(request.getEmail());
+    // Check email uniqueness if email is being changed
+    if (!user.getEmail().equals(request.getEmail())
+        && userRepository.existsByEmail(request.getEmail())) {
+      throw new RuntimeException("Email already exists: " + request.getEmail());
+    }
 
-    User updatedUser = userRepository.save(user);
-    return userMapper.toResponse(updatedUser);
+    // Use MapStruct for efficient mapping
+    User updatedFields = userMapper.updateUserFromRequest(request, user);
+    updatedFields.setUpdatedAt(Instant.now());
+    User savedUser = userRepository.save(updatedFields);
+    return userMapper.toResponse(savedUser);
   }
 
   public void deleteUser(int id) {

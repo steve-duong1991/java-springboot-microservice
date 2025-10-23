@@ -31,7 +31,12 @@ public class User extends BaseEntity {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
-  @Column(nullable = false, unique = true, name = "internal_id", insertable = false)
+  @Column(
+      nullable = false,
+      unique = true,
+      name = "internal_id",
+      insertable = false,
+      updatable = false)
   private UUID internalId;
 
   @Column(nullable = false, unique = true, name = "email")
